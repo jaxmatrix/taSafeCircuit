@@ -1,0 +1,155 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Transistor_FET:IRF540N Q2
+U 1 1 5DF9F25B
+P 3050 2650
+F 0 "Q2" H 3254 2696 50  0000 L CNN
+F 1 "IRF540N" H 3254 2605 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 3300 2575 50  0001 L CIN
+F 3 "http://www.irf.com/product-info/datasheets/data/irf540n.pdf" H 3050 2650 50  0001 L CNN
+	1    3050 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:R R2
+U 1 1 5DFA280E
+P 3150 1750
+F 0 "R2" H 3218 1796 50  0000 L CNN
+F 1 "10k" H 3218 1705 50  0000 L CNN
+F 2 "" H 3150 1750 50  0001 C CNN
+F 3 "~" H 3150 1750 50  0001 C CNN
+	1    3150 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 1450 1150 1300
+Wire Wire Line
+	1150 1300 1800 1300
+Wire Wire Line
+	3150 1300 3150 1500
+$Comp
+L pspice:R R1
+U 1 1 5DFA21E2
+P 1150 1700
+F 0 "R1" H 1218 1746 50  0000 L CNN
+F 1 "1M " H 1218 1655 50  0000 L CNN
+F 2 "" H 1150 1700 50  0001 C CNN
+F 3 "~" H 1150 1700 50  0001 C CNN
+	1    1150 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRF9540N Q1
+U 1 1 5DF9E507
+P 1700 2000
+F 0 "Q1" H 1904 1954 50  0000 L CNN
+F 1 "IRF9540N" H 1904 2045 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 1900 1925 50  0001 L CIN
+F 3 "http://www.irf.com/product-info/datasheets/data/irf9540n.pdf" H 1700 2000 50  0001 L CNN
+	1    1700 2000
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1500 2000 1150 2000
+Wire Wire Line
+	1150 2000 1150 1950
+Wire Wire Line
+	1800 1300 1800 1800
+Connection ~ 1800 1300
+Wire Wire Line
+	1800 1300 3150 1300
+Wire Wire Line
+	1800 2200 1800 2650
+Wire Wire Line
+	1800 2650 2850 2650
+Wire Wire Line
+	3150 2000 3150 2150
+$Comp
+L Device:R Load
+U 1 1 5DFA74CC
+P 1800 2900
+F 0 "Load" H 1870 2946 50  0000 L CNN
+F 1 "R" H 1870 2855 50  0000 L CNN
+F 2 "" V 1730 2900 50  0001 C CNN
+F 3 "~" H 1800 2900 50  0001 C CNN
+	1    1800 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 2650 1800 2750
+Connection ~ 1800 2650
+Wire Wire Line
+	3150 2150 3600 2150
+Wire Wire Line
+	850  2000 1150 2000
+Connection ~ 3150 2150
+Wire Wire Line
+	3150 2150 3150 2450
+Connection ~ 1150 2000
+Wire Wire Line
+	3600 950  850  950 
+$Comp
+L Switch:SW_Push SW
+U 1 1 5DFAD79D
+P 1150 2500
+F 0 "SW" V 1196 2452 50  0000 R CNN
+F 1 "SW_Push" V 1105 2452 50  0000 R CNN
+F 2 "" H 1150 2700 50  0001 C CNN
+F 3 "~" H 1150 2700 50  0001 C CNN
+	1    1150 2500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1150 2000 1150 2300
+Wire Wire Line
+	1150 2700 1150 3300
+Wire Wire Line
+	1150 3300 1800 3300
+Wire Wire Line
+	1800 3300 1800 3050
+Wire Wire Line
+	3150 2850 3150 3300
+Wire Wire Line
+	3150 3300 1800 3300
+Connection ~ 1800 3300
+$Comp
+L power:GND #PWR?
+U 1 1 5DFB368F
+P 1800 3300
+F 0 "#PWR?" H 1800 3050 50  0001 C CNN
+F 1 "GND" H 1805 3127 50  0000 C CNN
+F 2 "" H 1800 3300 50  0001 C CNN
+F 3 "" H 1800 3300 50  0001 C CNN
+	1    1800 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR?
+U 1 1 5DFB3B97
+P 1800 1300
+F 0 "#PWR?" H 1800 1150 50  0001 C CNN
+F 1 "VCC" H 1817 1473 50  0000 C CNN
+F 2 "" H 1800 1300 50  0001 C CNN
+F 3 "" H 1800 1300 50  0001 C CNN
+	1    1800 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3600 950  3600 2150
+Wire Wire Line
+	850  950  850  2000
+$EndSCHEMATC
