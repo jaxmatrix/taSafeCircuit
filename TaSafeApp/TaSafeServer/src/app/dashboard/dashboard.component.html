@@ -1,0 +1,22 @@
+<div class="container bg-light p-2">
+  <div class="row bg-dark">
+    <div class="col-9 text-white">User Name : {{ userName }}</div>
+    <button class="btn btn-primary text-white content-justify-right" (click)="logout()">Logout</button>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      Emergency Contacts
+    </div>
+    <div class="col-6">
+      <h4> Contacts </h4> <hr />
+      <ul>
+        <li class="row" *ngFor="let contact of contacts">
+          <div clas="col"><button class="btn btn-error" (click)="removeContact(contact.id)")>Remove</button> {{ contact.name }} </div>
+          <div class="col">{{ contact.number }}</div>
+
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>

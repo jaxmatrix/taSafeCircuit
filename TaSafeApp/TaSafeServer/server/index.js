@@ -23,8 +23,13 @@ app.post('*',(req,res)=>{
 });
 
 */
-app.post('/control/*', (req,res) => {
+app.post('/control/login', (req,res) => {
   console.log(req.body);
   res.json(req.body);
+});
+
+app.post('/control/registration', (req,res) => {
+  console.log(req.body);
+  res.json({ result:'success'});
 });
 

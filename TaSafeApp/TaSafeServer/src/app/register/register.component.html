@@ -1,9 +1,24 @@
-<div class="bg-secondary text-white p-6">
-  <h1>Register</h1>
-  <a href="" class="btn btn-info">Sign Up using Google</a>
-  <br />
-  <a href="" class="btn btn-info" >Sign up using Facebook</a>
-  <br />
-  <a href="" class="btn btn-info">Sign up using Email</a>
+<div class="bg-secondary text-white p-3">
+  <h3>Registration</h3>
 
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+    <div class="form-group">
+      <label for="Name">Name :</label>
+      <input id="Name" class="form-control" type="text" placeholder="Enter Name" formControl="name">
+    </div>
+    <div class="form-group">
+      <label for="productid">Product ID :</label>
+      <input id="productid" class="form-control" type="text" placeholder="Enter Product ID" formControl="productid">
+    </div>
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input id="email" class="form-control" type="text" placeholder="Enter Email" formControl="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password  :</label>
+      <input id="password" class="form-control" type="password" placeholder="Enter password" formControl="password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
 </div>
