@@ -1,0 +1,33 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(9, 10);// serial connection to sim module
+static const int RXPin = 4, TXPin = 3;
+SoftwareSerial ss(RXPin,TXPin);//serial connection to GPS
+void setup()
+{
+  mySerial.begin(9600);   // Setting the baud rate of GSM Module  
+//  Serial.begin(9600);    // Setting the baud rate of Serial Monitor (Arduino)
+  ss.begin(9600);
+  delay(100);
+}
+
+
+ void SendMessage()
+{
+  mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
+  delay(1000);  // Delay of 1000 milli seconds or 1 second
+  mySerial.println("AT+CMGS=\"+918768886660\"\r"); // Replace x with mobile number
+  delay(1000);
+  mySerial.println("I am in an emergency.Please help me as soon as possible. My location coordinates are: ");// The SMS text you want to send
+  delay(100);
+  mySerial.println(ss.read());//Output raw GPS data to sim module
+  delay(100);
+   mySerial.println((char)26);// ASCII code of CTRL+Z
+  delay(1000);
+}
+
+void loop()
+{
+ SendMessage();
+ while(1) {}; //stop loop from running again after the message is sent.
+}
