@@ -1,8 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const sessions = require('express-sessions');
+const User = require('./models/user');
 const PORT = process.env.PORT || 8000;
 const debug = true;
 const app = express();
+app.use(sessions({
+  secret: 'awesome code',
+  resave: true,
+  saveUninitialized: false
+}));
 
 
 app.use(bodyParser.json());
@@ -25,11 +32,21 @@ app.post('*',(req,res)=>{
 */
 app.post('/control/login', (req,res) => {
   console.log(req.body);
+  login = req.body;
   res.json(req.body);
 });
 
 app.post('/control/registration', (req,res) => {
   console.log(req.body);
-  res.json({ result:'success'});
+  userData = req.body;
+  User.create(userData,function(err, usr){
+    if(err){
+      console.log("error registration", err);
+      res.json({ result:'failed'})
+    } else {
+      console.log('Registration Success');
+      return res.json({result: 'success'});
+    }
+  });
 });
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
 
   registrationForm;
-
+  errorRegistration = false;
+  errorMessage: string;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -20,15 +21,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
-      name: new FormControl(),
-      productid: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl(),
+      name: new FormControl('', Validators.required),
+      productid: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
     });
   }
 
   onSubmit(value) {
-    if (this.registrationForm.valid) {
+    if (this.registrationForm.invalid) {
+      // alert "Enter the valid details"
+      console.log('Invalid Details entered');
+      this.errorRegistration = true;
+      this.errorMessage = 'Incomplete or Incorrect Details';
+    } else {
+      this.errorRegistration = false;
+      this.errorMessage = '';
       this.http.post('/control/registration', value).subscribe((response: any) => {
         console.log('Recieved Success', response);
         // add alert to send the message that registration was successful
@@ -38,9 +46,6 @@ export class RegisterComponent implements OnInit {
           // alert reason for failure for the registration
         }
       );
-    } else {
-      // alert "Enter the valid details"
-      console.log('Invalid Details entered');
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from '../interface/login';
 import { AuthService } from '../services/auth.service';
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginForm;
   returnUrl: string;
+  errorLogin = false;
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -28,9 +29,10 @@ export class LoginComponent implements OnInit {
     console.log('Login Infomation Sent', login);
     if (this.loginForm.invalid) {
       console.log('Value is invalid');
+      this.errorLogin = true;
       // Alert the people about the invalid form
     } else {
-
+      this.errorLogin = false ;
       this.http.post('control/login', login).subscribe((response: any) => {
         console.log('Response for login', response);
         console.log('Login Successful');
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       },
         (error) => {
+          this.errorLogin = true;
           console.log('Error Not found');
           console.log('Invalid Login');
         }
@@ -52,8 +55,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.formBuilder.group({
-      login: new FormControl(),
-      password: new FormControl(),
+      login: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
 
     });
 
