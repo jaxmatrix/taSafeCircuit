@@ -11,11 +11,18 @@
       <h4> Contacts </h4> <hr />
       <ul>
         <li class="row" *ngFor="let contact of contacts">
-          <div clas="col"><button class="btn btn-error" (click)="removeContact(contact.id)")>Remove</button> {{ contact.name }} </div>
-          <div class="col">{{ contact.number }}</div>
+          <div class="col">
+            <button class="btn btn-danger" (click)="removeContact(contact.id)">Remove</button> {{ contact.name }} </div>
+          <div class="col">{{ contact.no }}</div>
 
         </li>
-
+        <li class="row">
+          <div class="col">
+            <button class="btn btn-info" (click)="addContact()">Add</button>
+            <input type="text" (keyup)="this.newContact = $event.target.value" placeholder="Enter Name">
+            <input type="text" (keyup)="this.newContactNumber = $event.target.value" placeholder="Enter Number" >
+          </div>
+        </li>
       </ul>
     </div>
   </div>

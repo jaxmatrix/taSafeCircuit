@@ -38,8 +38,12 @@ export class RegisterComponent implements OnInit {
       this.errorRegistration = false;
       this.errorMessage = '';
       this.http.post('/control/registration', value).subscribe((response: any) => {
-        console.log('Recieved Success', response);
+        console.log('Recieved', response);
         // add alert to send the message that registration was successful
+        if ( response.result === 'failed') {
+          this.errorMessage = 'User already exist';
+          this.errorRegistration = true;
+        }
       },
         (error) => {
           console.log('Registration Failed');
