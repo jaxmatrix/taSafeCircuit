@@ -2,8 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 //const sessions = require('express-sessions');
+
+// Data base models used
 const User = require('./models/user');
 const Contact = require('./models/contact');
+
+// Environment  vairable
 const PORT = process.env.PORT || 8000;
 const debug = true;
 const app = express();
